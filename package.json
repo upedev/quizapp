@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/upedev/quizapp/issues"
   },
-  "homepage": "https://github.com/upedev/quizapp#readme"
+  "homepage": "https://github.com/upedev/quizapp#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.1.10"
+  }
 }
