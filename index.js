@@ -5,7 +5,7 @@ const { mongoose } = require('./db.js');
 var userController = require('./controllers/userController.js');
 
 var app = express();
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 
 
 
