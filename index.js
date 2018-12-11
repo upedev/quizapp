@@ -1,4 +1,14 @@
 const express = require('express');
-var app = express();
+const bodyParser = require('body-parser');
 
-app.listen(8000, () => console.log("Server started at port : 8000"));
+const { mongoose } = require('./db.js');
+var userController = require('./controllers/userController.js');
+
+var app = express();
+app.use(bodyParser.json);
+
+
+
+app.listen(8080, () => console.log("Server started at port : 8080"));
+
+app.use('/user', userController);
