@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule}  from '@angular/router'
+import {HttpClientModule} from '@angular/common/http'
+
 
 import { AppComponent } from './app.component';
 import { QuestionsComponent } from './questions/questions.component';
@@ -10,13 +12,15 @@ import { MatButtonModule, MatCheckboxModule, MatCardModule, MatRadioModule, MatM
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import {appRoutes} from './routes';
+import { ExamsComponent } from './exams/exams.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionsComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    ExamsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,8 @@ import {appRoutes} from './routes';
     MatCardModule,
     MatRadioModule,
     MatMenuModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

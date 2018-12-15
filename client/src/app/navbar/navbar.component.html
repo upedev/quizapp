@@ -1,7 +1,4 @@
-<mat-card class="nav-bar">
-<button mat-button [matMenuTriggerFor]="menu">Exams</button>
-<mat-menu #menu>
-  <button mat-menu-item>SSC</button>
-  <button mat-menu-item>UPSC</button>
-</mat-menu>
-</mat-card>
+<nav class="docs-navbar-header">
+<a mat-button routerLink="/exam/ssc" class="docs-button"><span>SSC</span></a>
+<a mat-button routerLink="/exam/upsc" class="docs-button"><span>UPSC</span></a>
+</nav>
