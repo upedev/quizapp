@@ -1,16 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {RouterModule}  from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonModule, MatCheckboxModule, MatCardModule, MatRadioModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatCardModule, MatRadioModule, MatMenuModule } from '@angular/material';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import {appRoutes} from './routes';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +24,9 @@ import { MatButtonModule, MatCheckboxModule, MatCardModule, MatRadioModule } fro
     MatButtonModule,
     MatCheckboxModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
