@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/quizapp', (err) => {
+const database = "mongodb://127.0.0.1:27017/quizapp";
+
+mongoose.connect(database, (err) => {
     if (err) {
-        throw err;
+        console.log("Database Connection Error : ", + err);
     } else {
-        console.log("successfully connected to the database");
+        console.log("Database Connection Success : " + database);
     }
 });
 
