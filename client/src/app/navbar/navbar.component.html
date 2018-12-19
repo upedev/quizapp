@@ -2,8 +2,10 @@
 <mat-toolbar color="primary">
 <a routerLink="/home" class="navbar-item" class="icon"><img src="assets/img/logo.png" style='height: 100%'></a>
 <span class="spacer"></span>
-<button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>perm_identity</mat-icon>
+<button mat-button [matMenuTriggerFor]="menu">
+    <!-- <mat-icon>perm_identity</mat-icon> -->
+    <img src="assets/img/585e4bf3cb11b227491c339a.png" class="user-image">
+    <span>Upender</span>
 </button>
 <mat-menu #menu="matMenu">
     <button mat-menu-item>Profile</button>
