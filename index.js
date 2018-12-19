@@ -4,16 +4,34 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
-const { mongoose } = require('./db.js');
+const mongoose = require('mongoose');
+const config = require('./config/db');
 
-var userController = require('./controllers/userController.js');
-var examController = require('./controllers/examController.js');
+const userController = require('./controllers/userController.js');
+const examController = require('./controllers/examController.js');
 
 // express app
 const app = express();
 
+// connect database
+mongoose.connect(config.database);
+
+mongoose.connection.on('connected', () => {
+    console.log("Database Connected : " + config.database);
+});
+
+mongoose.connection.on('error', (err) => {
+    console.log("Database Error : " + err);
+});
+
 // body-parser middleware
 app.use(bodyParser.json());
+
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
 
 // cors middleware
 app.use(cors({ 
