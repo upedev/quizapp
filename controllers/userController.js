@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.js');
+const config = require('../config/db');
 
 // register route
 router.post('/register', (req, res, next) => {
@@ -24,12 +25,43 @@ router.post('/register', (req, res, next) => {
 
 // auth route
 router.post('/auth', (req, res, next) => {
-    res.send("authentication route chala")
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.getUserByUsername(username, (err, user) => {
+        if(err) {
+            throw err;
+        }
+        if(!user) {
+            return res.json({success: false, msg: "User Not Found"})
+        }
+
+        User.comparePassword(password, user.password, (err, isMatch) => {
+            if(err){
+                throw err;
+            }
+            if(isMatch){
+                const token = jwt.sign({data: user}, config.secret, {
+                   expiresIn: 10800 // 3 hours. 
+                });
+
+                res.json({
+                    success: true,
+                    token: 'JWT ' + token,
+                    name: user.name,
+                    username: user.username,
+                    email: user.email
+                });
+            } else {
+                return res.json({success: false, msg: "Incorrect Password"});
+            }
+        });
+    });
 });
 
 // profile route
-router.get('/profile', (req, res, next) => {
-    res.send("profile route chala")
+router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    res.send({user: req.user});
 });
 
 // users list route
